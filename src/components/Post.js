@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 
-function Post({ author, text }) {
-    return <p>{text} <br /> Written by: {author} </p>
+function Post(props) {
+    return <p>{props.postData.text} <br /> Written by: {props.postData.author} </p>
 }
 
 Post.prototypes = {
