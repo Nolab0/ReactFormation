@@ -1,9 +1,10 @@
 import PropTypes from "prop-types"
 import { useState } from "react"
+import moment from "moment"
 
-function Post(props) {
+function Post({ postData, deletePost }) {
 
-    const [nbLikes, setNbLikes] = useState(props.postData.likes);
+    const [nbLikes, setNbLikes] = useState(postData.likes);
     const [isLiked, setIsLiked] = useState(false);
     const likePost = () => {
         if (isLiked) {
@@ -16,10 +17,13 @@ function Post(props) {
         }
     }
 
-    return <p>{props.postData.text} <br />
-        Written by: {props.postData.author} <br />
+    return <p>
+        {postData.text} <br />
+        <img src={postData.postPicture} /> <br />
+        Written by: {postData.author} at {moment(postData.date).format("HH:mm")} <img src={postData.authorPicture} /><br />
         {nbLikes} Likes <br />
         <button onClick={likePost}>{isLiked ? "Unlike" : "Like"}</button>
+        <button onClick={() => deletePost(postData.id)}>Delete post</button>
     </p>
 }
 
