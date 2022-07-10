@@ -1,0 +1,93 @@
+html {
+    --main-color: #4267B2
+}
+
+.post {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 0px auto 25px auto;
+}
+
+.post_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5em;
+}
+
+.post_header_left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.post_profilepic {
+    border-radius: 50%;
+    margin-right: 10px;
+    width: 35px;
+    height: 35px;
+}
+
+.post_auhtor {
+    font-weight: 600;
+}
+
+.post_time {
+    font-size: 0.8em;
+    color: #555;
+}
+
+.post_text {
+    margin-bottom: 1.5em;
+}
+
+.post_picture {
+    margin-bottom: 1.5em;
+
+}
+
+.post_picture img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.post_likes {
+    background-color: var(--main-color);
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    user-select: none;
+    color: white;
+}
+
+.post_liked {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    user-select: none;
+    color: black;
+}
+
+.post_thumb {
+    margin-right: 5px;
+}
+
+.post_menu {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.post_popup {
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    border: 1px solid gray;
+    box-shadow: rgba(0, 0, 0, 0.16);
+    padding: 5px;
+}
+
+.post_popup_hidden {
+    display: none;
+}
