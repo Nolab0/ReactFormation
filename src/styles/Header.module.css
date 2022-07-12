@@ -1,3 +1,7 @@
+html {
+    --main-color: #4267B2
+}
+
 * {
     box-sizing: border-box;
 }
@@ -5,4 +9,15 @@
 body {
     margin: 0;
     padding: 0;
+}
+
+.header {
+    background-color: var(--main-color);
+    color: white;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 25px;
+    margin: 0;
 }

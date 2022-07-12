@@ -1,9 +1,14 @@
 import { useState } from "react"
+import boxStyle from "../styles/Post.module.css"
+import style from "../styles/CreatePost.module.css"
+import useLogVar from "../hooks/useLogVar";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 function CreatePost({ addPost }) {
 
-    const [postText, setPostText] = useState("");
+    const [postText, setPostText] = useLocalStorage("", "postText");
     const [postPicture, setPostPicture] = useState("");
+
 
     const onPostTextChangeHandler = (event) => {
         setPostText(event.target.value);
@@ -20,14 +25,23 @@ function CreatePost({ addPost }) {
         setPostPicture("");
     }
 
+    useLogVar(postText, "postText");
+
     return (
-        <>
-            <div>CreatePost</div>
-            Content: <input onChange={onPostTextChangeHandler} type="text" value={postText} />
-            <br />
-            Image: <input onChange={onPostPictureChangeHandler} type="text" value={postPicture} />
-            {postText.trim().length > 0 && <button onClick={createPostHandler}>Post</button>}
-        </>
+        <div className={boxStyle.post}>
+            <div className={style.create_post_row}>
+                <div>Content: </div>
+                <input onChange={onPostTextChangeHandler} type="text" value={postText} placeholder="What's new ?" />
+            </div>
+            <div className={style.create_post_row}>
+                <div>Picture: </div>
+                <input onChange={onPostPictureChangeHandler} type="text" value={postPicture} placeholder="Picture URL" />
+            </div>
+            {postText.trim().length > 0 &&
+                <div className={style.create_post_row_last}>
+                    <button className={style.btn} onClick={createPostHandler}>Post</button>
+                </div>}
+        </div>
     );
 }
 

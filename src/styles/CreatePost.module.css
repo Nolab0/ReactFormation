@@ -1,0 +1,52 @@
+html {
+    --main-color: #4267B2
+}
+
+
+.create_post_row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.create_post_row_last {
+    display: flex;
+    align-items: center;
+}
+
+.create_post_row input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 0px;
+    background-color: #eee;
+    margin-left: 10px;
+}
+
+.create_post_row input[type="text"]:focus {
+    outline: none;
+}
+
+.btn {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 0px;
+    background-color: var(--main-color);
+    color: white;
+    cursor: pointer;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.btn:active {
+    opacity: 0.5;
+}

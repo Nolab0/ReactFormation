@@ -1,7 +1,9 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import CreatePost from "./CreatePost";
 import Feed from "./Feed"
 import Header from "./Header"
+import style from "../styles/App.module.css"
+import useLocalStorage from "../hooks/useLocalStorage";
 
 
 function App() {
@@ -13,7 +15,8 @@ function App() {
       text: "I'm CEO bitch",
       postPicture: "https://picsum.photos/seed/picsum/500/300",
       likes: 6,
-      date: new Date(Date.now())
+      isLiked: true,
+      date: new Date(Date.now()),
     },
     {
       id: 2,
@@ -22,6 +25,7 @@ function App() {
       text: "I'm coming for everything",
       postPicture: "https://picsum.photos/seed/picsum/500/300",
       likes: 3,
+      isLiked: false,
       date: new Date(Date.now() - 3600 * 1000)
     },
     {
@@ -31,11 +35,33 @@ function App() {
       text: "Drop the 'the', just Facebook",
       postPicture: "https://picsum.photos/seed/picsum/500/300",
       likes: 0,
+      isLiked: false,
       date: new Date(Date.now() - 3600 * 2000)
     }
   ]
 
-  const [posts, setPosts] = useState(initialPost);
+  // const [posts, setPosts] = useState(initialPost);
+
+  const [posts, setPosts] = useLocalStorage(initialPost, "facebook_posts");
+
+  //const [isLoading, setIsLoading] = useState(true);
+
+  const isLoading = false;
+
+  /*const bouchonBackend = () => {
+    return new Promise((resolve, obect) => {
+      setTimeout(() => resolve(initialPost), 1000);
+    })
+  }
+
+
+  // At first loading of the component
+  useEffect(() => {
+    bouchonBackend().then(posts => {
+      setPosts(posts)
+      setIsLoading(false);
+    });
+  }, []);*/
 
   const currrentUser = {
     author: "User",
@@ -59,11 +85,17 @@ function App() {
     setPosts(posts.filter(p => p.id !== id));
   }
 
+  const likePost = (id, incr) => {
+    setPosts(posts.map(p => p.id === id ? { ...p, likes: p.likes + incr, isLiked: !p.isLiked } : p));
+  }
+
   return (
     <>
       <Header />
-      <CreatePost addPost={addPost} />
-      <Feed posts={posts} deletePost={deletePost} />
+      <div className={style.center700px}>
+        <CreatePost addPost={addPost} />
+        <Feed posts={posts} deletePost={deletePost} likePost={likePost} isLoading={isLoading} />
+      </div>
     </>
   )
 }

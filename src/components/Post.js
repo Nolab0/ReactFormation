@@ -3,21 +3,16 @@ import { useState } from "react"
 import moment from "moment"
 import style from "../styles/Post.module.css"
 
-function Post({ postData, deletePost }) {
 
-    const [nbLikes, setNbLikes] = useState(postData.likes);
-    const [isLiked, setIsLiked] = useState(false);
+function Post({ postData, deletePost, likePost }) {
+
     const [showMenu, setShowMenu] = useState(false);
 
-    const likePost = () => {
-        if (isLiked) {
-            setNbLikes(nbLikes - 1);
-            setIsLiked(false);
-        }
-        else {
-            setNbLikes(nbLikes + 1);
-            setIsLiked(true);
-        }
+    const onLikePost = () => {
+        if (postData.isLiked)
+            likePost(postData.id, -1);
+        else
+            likePost(postData.id, 1);
     }
 
     const toggleMenu = () => setShowMenu(!showMenu);
@@ -26,7 +21,7 @@ function Post({ postData, deletePost }) {
         <div className={style.post}>
             <div className={style.post_header}>
                 <div className={style.post_header_left}>
-                    <img className={style.post_profilepic} src={postData.authorPicture} />
+                    <img className={style.post_profilepic} src={postData.authorPicture} alt="Profile" />
                     <div>
                         <div className={style.post_auhtor}>{postData.author}</div>
                         <div className={style.post_time}>{moment(postData.date).format("HH:mm")}</div>
@@ -35,22 +30,20 @@ function Post({ postData, deletePost }) {
                 <div className={style.post_menu} onClick={toggleMenu}>
                     ...
                     <div className={showMenu ? style.post_popup : style.post_popup_hidden} onClick={() => deletePost(postData.id)}>Delete</div>
-                    {/*<button onClick={() => deletePost(postData.id)}>Delete post</button>*/}
                 </div>
             </div>
 
             <div className={style.post_text}>
                 {postData.text}
             </div>
-            8b4beb
             <div className={style.post_picture}>
-                <img src={postData.postPicture} />
+                <img src={postData.postPicture} alt="Post" />
             </div>
 
             <div className={style.post_footer}>
-                <span className={isLiked ? style.post_liked : style.post_likes} onClick={likePost}>
+                <span className={postData.isLiked ? style.post_liked : style.post_likes} onClick={onLikePost}>
                     <span className={style.post_thumb}>👍</span>
-                    <span>{nbLikes} Likes </span>
+                    <span>{postData.likes} Likes </span>
                 </span>
             </div>
 
