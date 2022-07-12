@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 function useLogVar(variable, label) {
     useEffect(() => {
         console.log(label + ": " + variable);
-    }, [variable]);
+    }, [variable, label]);
 }
 
 export default useLogVar;

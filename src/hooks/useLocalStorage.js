@@ -13,7 +13,7 @@ function useLocalStorage(initialData, storageKey) {
     const [data, setData] = useState(getValueFromStorage(storageKey) || initialData);
     useEffect(() => {
         setValueInStorage(storageKey, data)
-    }, [data]);
+    }, [data, storageKey]);
 
     return [data, setData];
 }
