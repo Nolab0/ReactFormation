@@ -3,6 +3,7 @@ import Feed from "../components/Feed"
 import Header from "../components/Header"
 import style from "../styles/App.module.css"
 import useLocalStorage from "../hooks/useLocalStorage";
+import MainLayout from "../layouts/MainLayout";
 
 function HomePage() {
     const initialPost = [
@@ -89,11 +90,8 @@ function HomePage() {
 
     return (
         <>
-            <Header />
-            <div className={style.center700px}>
-                <CreatePost addPost={addPost} />
-                <Feed posts={posts} deletePost={deletePost} likePost={likePost} isLoading={isLoading} />
-            </div>
+            <CreatePost addPost={addPost} />
+            <Feed posts={posts} deletePost={deletePost} likePost={likePost} isLoading={isLoading} />
         </>
     )
 }

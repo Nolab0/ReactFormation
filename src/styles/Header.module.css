@@ -53,3 +53,9 @@ nav ul li a {
     width: 50px;
     margin-right: 10px;
 }
+
+.center700px {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 10px;
+}
