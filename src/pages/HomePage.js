@@ -1,11 +1,13 @@
 import CreatePost from "../components/CreatePost";
 import Feed from "../components/Feed"
-import Header from "../components/Header"
-import style from "../styles/App.module.css"
 import useLocalStorage from "../hooks/useLocalStorage";
-import MainLayout from "../layouts/MainLayout";
+import UserContext from "../contexts/UserContext";
+import { useContext } from "react";
 
 function HomePage() {
+
+    const { user } = useContext(UserContext);
+
     const initialPost = [
         {
             id: 1,
@@ -62,16 +64,12 @@ function HomePage() {
       });
     }, []);*/
 
-    const currrentUser = {
-        author: "User",
-        authorPicture: "https://picsum.photos/seed/profile42/50/50"
-    };
 
     const addPost = (postText, postPicture) => {
         const newPost = {
             id: Math.floor(1000 * Math.random()),
-            author: currrentUser.author,
-            authorPicture: currrentUser.authorPicture,
+            author: user.author,
+            authorPicture: user.authorPicture,
             text: postText,
             postPicture: postPicture,
             likes: 0,

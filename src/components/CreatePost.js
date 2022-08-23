@@ -1,13 +1,16 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import boxStyle from "../styles/Post.module.css"
 import style from "../styles/CreatePost.module.css"
 import useLogVar from "../hooks/useLogVar";
 import useLocalStorage from "../hooks/useLocalStorage";
+import UserContext from '../contexts/UserContext'
 
 function CreatePost({ addPost }) {
 
     const [postText, setPostText] = useLocalStorage("", "postText");
     const [postPicture, setPostPicture] = useState("");
+
+    const { user } = useContext(UserContext);
 
 
     const onPostTextChangeHandler = (event) => {
@@ -30,7 +33,7 @@ function CreatePost({ addPost }) {
     return (
         <div className={boxStyle.post}>
             <div className={style.create_post_row}>
-                <div>Content: </div>
+                <img src={user.authorPicture} style={{ borderRadius: '50%', width: 35 }} alt="" />
                 <input onChange={onPostTextChangeHandler} type="text" value={postText} placeholder="What's new ?" />
             </div>
             <div className={style.create_post_row}>

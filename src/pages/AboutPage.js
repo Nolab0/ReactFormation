@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import UserContext from '../contexts/UserContext'
 
 function AboutPage() {
+
+    const { user } = useContext(UserContext);
+
     return (
-        <h1>About</h1>
+        <div>
+            <h1>About</h1>
+            <p>Welcome to The Facebook</p>
+            <p>You are connected as {user.author}</p>
+        </div>
     )
 }
 

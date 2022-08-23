@@ -1,4 +1,5 @@
 .chat {
-    width: 300;
-    background-color: #EEE;
+    width: 300px;
+    background-color: '#EEE';
+    padding: 30px;
 }
