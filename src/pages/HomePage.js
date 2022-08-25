@@ -3,6 +3,7 @@ import Feed from "../components/Feed"
 import useLocalStorage from "../hooks/useLocalStorage";
 import UserContext from "../contexts/UserContext";
 import { useContext } from "react";
+import { useEffect, useState } from "react";
 
 function HomePage() {
 
@@ -43,27 +44,16 @@ function HomePage() {
 
     // const [posts, setPosts] = useState(initialPost);
 
-    const [posts, setPosts] = useLocalStorage(initialPost, "facebook_posts");
+    const [posts, setPosts] = useState([]);
 
-    //const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const isLoading = false;
-
-    /*const bouchonBackend = () => {
-      return new Promise((resolve, obect) => {
-        setTimeout(() => resolve(initialPost), 1000);
-      })
-    }
-  
-  
-    // At first loading of the component
-    useEffect(() => {
-      bouchonBackend().then(posts => {
-        setPosts(posts)
+    /*useEffect(async () => {
+        const res = await fetch('https://run.mocky.io/v3/17c20192-4cb1-46b9-be70-f129d9100d0c');
+        const postsData = await res.json();
+        setPosts(postsData);
         setIsLoading(false);
-      });
-    }, []);*/
-
+    }, [])*/
 
     const addPost = (postText, postPicture) => {
         const newPost = {
